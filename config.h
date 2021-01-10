@@ -29,7 +29,8 @@ static const unsigned int alphas[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "Web", "3", "4", "5", "6", "Mail", "Musik", "9" };
+static const char *tags[] = { "1", "Web", "Dateien", "Spiele", "5", "6", "Mail", "Musik", "9" };
+static const char *tagsalt[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -108,6 +109,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_c,      setcentered,    {0} },
+	{ MODKEY,                       XK_g,      togglealttag,   {0} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -118,6 +120,8 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_BackSpace, quit,        {0} },
+
+	{0, XF86XK_Display,                        spawn,          SHCMD("scrmenu") },
 };
 
 /* button definitions */
