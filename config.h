@@ -39,8 +39,10 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title         tags mask     iscentered   isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,         0,            0,           1,           -1 },
-	{ "Firefox",  NULL,       NULL,         1 << 1,       0,           0,            1 },
+	{ "firefox",  NULL,       NULL,         1 << 1,       0,           0,            1 },
 	{ "qutebrowser", NULL,    NULL,         1 << 1,       0,           0,            1 },
+	{ "Pcmanfm",  NULL,       NULL,         1 << 2,       0,           0,           -1 },
+	{ "minecraft-launcher", NULL, NULL,     1 << 3,       0,           0,           -1 },
 	{ NULL,       NULL,       "neomutt",    1 << 6,       1,           0,           -1 },
 	{ "Spotify",  NULL,       NULL,         1 << 7,       0,           0,            1 },
 	{ NULL,       NULL,       "pulsemixer", 0,            1,           1,           -1 },
@@ -81,11 +83,21 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_recency", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *mailcmd[]  = { TERMINAL, "-e", "neomutt", NULL };
+static const char *firefox[]  = { "firefox", NULL };
+static const char *firefoxpriv[] = { "firefox", "--private-window", NULL };
+static const char *qutebrowser[] = { "qutebrowser", NULL };
+
+#include <X11/XF86keysym.h>
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,             XK_Return, spawn,          SHCMD("samedir") },
+	{ MODKEY|ControlMask,           XK_Return, spawn,          {.v = qutebrowser } },
+	{ MODKEY,                       XK_F2,     spawn,          {.v = firefox } },
+	{ MODKEY|ShiftMask,             XK_F2,     spawn,          {.v = firefoxpriv } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	STACKKEYS(MODKEY,                          focus)
 	STACKKEYS(MODKEY|ShiftMask,                push)
@@ -93,13 +105,12 @@ static Key keys[] = {
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_Return, zoom,           {0} },
+	{ MODKEY,                       XK_space,  zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY|ShiftMask,             XK_s,      togglealwaysontop, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -110,6 +121,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_c,      setcentered,    {0} },
 	{ MODKEY,                       XK_g,      togglealttag,   {0} },
+	{ MODKEY,                       XK_n,      spawn,          {.v = mailcmd } },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
