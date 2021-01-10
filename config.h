@@ -1,5 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
+#define TERMINAL "st"
+
 /* appearance */
 static const unsigned int borderpx  = 4;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -38,6 +40,8 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,       NULL,         0,            0,           1,           -1 },
 	{ "Firefox",  NULL,       NULL,         1 << 1,       0,           0,            1 },
 	{ "qutebrowser", NULL,    NULL,         1 << 1,       0,           0,            1 },
+	{ NULL,       NULL,       "neomutt",    1 << 6,       1,           0,           -1 },
+	{ "Spotify",  NULL,       NULL,         1 << 7,       0,           0,            1 },
 	{ NULL,       NULL,       "pulsemixer", 0,            1,           1,           -1 },
 };
 
