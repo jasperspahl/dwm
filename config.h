@@ -146,6 +146,23 @@ static Key keys[] = {
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 
+	{ MODKEY|Mod1Mask,              XK_j,      moveresize,     {.v = "0x 25y 0w 0h" } },
+	{ MODKEY|Mod1Mask,              XK_k,      moveresize,     {.v = "0x -25y 0w 0h" } },
+	{ MODKEY|Mod1Mask,              XK_h,      moveresize,     {.v = "25x 0y 0w 0h" } },
+	{ MODKEY|Mod1Mask,              XK_l,      moveresize,     {.v = "-25x 0y 0w 0h" } },
+	{ MODKEY|Mod1Mask|ShiftMask,    XK_j,      moveresize,     {.v = "0x 0y 0w 25h" } },
+	{ MODKEY|Mod1Mask|ShiftMask,    XK_k,      moveresize,     {.v = "0x 0y 0w -25h" } },
+	{ MODKEY|Mod1Mask|ShiftMask,    XK_l,      moveresize,     {.v = "0x 0y 25w 0h" } },
+	{ MODKEY|Mod1Mask|ShiftMask,    XK_h,      moveresize,     {.v = "0x 0y -25w 0h" } },
+	{ MODKEY|ControlMask,           XK_k,      moveresizeedge, {.v = "t"} },
+	{ MODKEY|ControlMask,           XK_j,      moveresizeedge, {.v = "b"} },
+	{ MODKEY|ControlMask,           XK_h,      moveresizeedge, {.v = "l"} },
+	{ MODKEY|ControlMask,           XK_l,      moveresizeedge, {.v = "r"} },
+	{ MODKEY|ControlMask|ShiftMask, XK_k,      moveresizeedge, {.v = "T"} },
+	{ MODKEY|ControlMask|ShiftMask, XK_j,      moveresizeedge, {.v = "B"} },
+	{ MODKEY|ControlMask|ShiftMask, XK_h,      moveresizeedge, {.v = "L"} },
+	{ MODKEY|ControlMask|ShiftMask, XK_l,      moveresizeedge, {.v = "R"} },
+
 	STACKKEYS(MODKEY,                          focus)
 	STACKKEYS(MODKEY|ShiftMask,                push)
 
