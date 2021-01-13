@@ -148,8 +148,8 @@ static Key keys[] = {
 
 	{ MODKEY|Mod1Mask,              XK_j,      moveresize,     {.v = "0x 25y 0w 0h" } },
 	{ MODKEY|Mod1Mask,              XK_k,      moveresize,     {.v = "0x -25y 0w 0h" } },
-	{ MODKEY|Mod1Mask,              XK_h,      moveresize,     {.v = "25x 0y 0w 0h" } },
-	{ MODKEY|Mod1Mask,              XK_l,      moveresize,     {.v = "-25x 0y 0w 0h" } },
+	{ MODKEY|Mod1Mask,              XK_l,      moveresize,     {.v = "25x 0y 0w 0h" } },
+	{ MODKEY|Mod1Mask,              XK_h,      moveresize,     {.v = "-25x 0y 0w 0h" } },
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_j,      moveresize,     {.v = "0x 0y 0w 25h" } },
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_k,      moveresize,     {.v = "0x 0y 0w -25h" } },
 	{ MODKEY|Mod1Mask|ShiftMask,    XK_l,      moveresize,     {.v = "0x 0y 25w 0h" } },
