@@ -3,7 +3,7 @@
 #define TERMINAL "st"
 
 /* appearance */
-static const unsigned int borderpx  = 4;        /* border pixel of windows */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -19,7 +19,7 @@ static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
 	/*                  fg         bg         border   */
-	[SchemeNorm]    = { col_gray3, col_gray1, col_green },
+	[SchemeNorm]    = { col_gray3, col_gray1, "#000000" },
 	[SchemeSel]     = { col_gray4, col_cyan,  col_cyan  },
 	[SchemeStatus]  = { col_gray4, col_gray1,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
 };
@@ -44,9 +44,11 @@ static const Rule rules[] = {
 	{ "firefox",  NULL,       NULL,         1 << 1,       0,           0,            1 },
 	{ "qutebrowser", NULL,    NULL,         1 << 1,       0,           0,            1 },
 	{ "Pcmanfm",  NULL,       NULL,         1 << 2,       0,           0,           -1 },
+	{ "Thunar",   NULL,       NULL,         1 << 2,       0,           0,           -1 },
 	{ "minecraft-launcher", NULL, NULL,     1 << 3,       0,           0,           -1 },
 	{ "Skype",    NULL,       NULL,         1 << 4,       0,           0,            1 },
 	{ "Discord",  NULL,       NULL,         1 << 4,       0,           0,            1 },
+	{ "discord",  NULL,       NULL,         1 << 4,       0,           0,            1 },
 	{ NULL,       NULL,       "neomutt",    1 << 6,       1,           0,           -1 },
 	{ "Spotify",  NULL,       NULL,         1 << 7,       0,           0,            1 },
 	{ NULL,       NULL,       "pulsemixer", 0,            1,           1,           -1 },
@@ -94,7 +96,7 @@ static const char *firefoxpriv[] = { "firefox", "--private-window", NULL };
 static const char *qutebrowser[] = { "qutebrowser", NULL };
 static const char *wallchanger[] = { "sxiv", "/home/jasper/.local/share/wallpapers", "-t", "-r", NULL };
 static const char *rndbg[]    = { "setbg", "/usr/share/backgrounds/wallpapers/", NULL };
-static const char *fileman[]  = { "pcmanfm", NULL };
+static const char *fileman[]  = { "thunar", NULL };
 
 #include <X11/XF86keysym.h>
 
@@ -112,6 +114,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_F2,     spawn,          {.v = firefox } },
 	{ MODKEY|ShiftMask,             XK_F2,     spawn,          {.v = firefoxpriv } },
 	{ MODKEY,                       XK_F3,     spawn,          {.v = fileman }},
+	{ MODKEY|ShiftMask,             XK_F3,     spawn,          TERMCMD("lf")},
 
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_w,      spawn,          {.v = wallchanger } },
@@ -129,6 +132,7 @@ static Key keys[] = {
 	/* { MODKEY,                       XK_a,      spawn,          SHCMD("") }, */
 	{ MODKEY|ShiftMask,             XK_s,      togglealwaysontop, {0} },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
+	{ MODKEY|ShiftMask,             XK_d,      spawn,          SHCMD("i3-dmenu-desktop") },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_g,      togglealttag,   {0} },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
