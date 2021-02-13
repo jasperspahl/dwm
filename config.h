@@ -29,6 +29,17 @@ static const unsigned int alphas[][3]      = {
 	[SchemeSel]     = { OPAQUE, baralpha, borderalpha },
 	[SchemeStatus]  = { OPAQUE, baralpha, borderalpha },
 };
+typedef struct {
+	const char *name;
+	const void *cmd;
+} Sp;
+const char *spcmd1[] = { "st", "-n", "spterm", "-g", "120x34", NULL };
+const char *spcmd2[] = { "stalonetray", NULL };
+static Sp scratchpads[] = {
+	/* name         cmd */
+	{"spterm",      spcmd1},
+	{"stalonetray", spcmd2},
+};
 
 /* tagging */
 static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
@@ -52,6 +63,8 @@ static const Rule rules[] = {
 	{ NULL,       NULL,       "neomutt",    1 << 6,       1,           0,           -1 },
 	{ "Spotify",  NULL,       NULL,         1 << 7,       0,           0,            1 },
 	{ NULL,       NULL,       "pulsemixer", 0,            1,           1,           -1 },
+	{ NULL,       "spterm",   NULL,         SPTAG(0),     1,           1,           -1 },
+	{ NULL,       "stalonetray", NULL,      SPTAG(1),     1,           1,           -1 },
 };
 
 /* layout(s) */
@@ -149,6 +162,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
+	{ MODKEY,                       XK_slash,  togglescratch,  {.ui = 0 } },
+	{ MODKEY|ShiftMask,             XK_slash,  togglescratch,  {.ui = 1 } },
 
 	{ MODKEY|Mod1Mask,              XK_j,      moveresize,     {.v = "0x 25y 0w 0h" } },
 	{ MODKEY|Mod1Mask,              XK_k,      moveresize,     {.v = "0x -25y 0w 0h" } },
