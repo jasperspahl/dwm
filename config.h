@@ -79,6 +79,8 @@ static const Layout layouts[] = {
 	{ "[M]",      monocle },
 	{ "TTT",      bstack },
 	{ "===",      bstackhoriz },
+	{ "|M|",      centeredmaster },
+	{ ">M>",      centeredfloatingmaster },
 	{ NULL,       NULL },   /* MUST BE LAST FOR CYCLELAYOUTS TO WORK */
 };
 
@@ -163,6 +165,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_n,      spawn,          {.v = mailcmd } },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY|ShiftMask,             XK_m,      spawn,          TERMCMD("pulsemixer") },
+	{ MODKEY|ControlMask,           XK_m,      setlayout,      {.v = &layouts[5]} },
+	{ MODKEY|Mod1Mask,              XK_m,      setlayout,      {.v = &layouts[6]} },
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	{ MODKEY|ControlMask,           XK_period, cyclelayout,    {.i = -1 } },
