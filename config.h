@@ -77,6 +77,8 @@ static const Layout layouts[] = {
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+	{ "TTT",      bstack },
+	{ "===",      bstackhoriz },
 };
 
 /* key definitions */
@@ -135,6 +137,8 @@ static Key keys[] = {
 	/* { MODKEY,                       XK_e,      spawn,          SHCMD("") }, */
 	/* { MODKEY,                       XK_r,      spawn,          SHCMD("") }, */
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+	{ MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY|ControlMask,           XK_t,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_y,      spawn,          SHCMD("$BROWSER https://youtube.com") },
 	{ MODKEY,                       XK_u,      spawn,          SHCMD("dmenuunicode") },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
