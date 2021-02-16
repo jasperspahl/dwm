@@ -133,6 +133,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_F2,     spawn,          {.v = firefoxpriv } },
 	{ MODKEY,                       XK_F3,     spawn,          {.v = fileman }},
 	{ MODKEY|ShiftMask,             XK_F3,     spawn,          TERMCMD("lf")},
+	{ MODKEY,                       XK_F8,     spawn,          SHCMD("xsetwacom set $(xsetwacom list devices | dmenu | sed 's/^.*id: //g' | awk '{print $1}') MapToOutput $(xrandr | grep mm | awk '{print $1}'| dmenu)")},
 
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_w,      spawn,          {.v = wallchanger } },
