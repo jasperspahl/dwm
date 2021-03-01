@@ -114,7 +114,7 @@ static const char *firefoxpriv[] = { "firefox", "--private-window", NULL };
 static const char *qutebrowser[] = { "qutebrowser", NULL };
 static const char *wallchanger[] = { "sxiv", "/home/jasper/.local/share/wallpapers", "-t", "-r", NULL };
 static const char *rndbg[]    = { "setbg", "/usr/share/backgrounds/wallpapers/", NULL };
-static const char *fileman[]  = { "thunar", NULL };
+static const char *fileman[]  = { "pcmanfm", NULL };
 
 #include <X11/XF86keysym.h>
 
