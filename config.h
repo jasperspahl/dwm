@@ -53,6 +53,7 @@ static const Rule rules[] = {
 	/* class      instance    title         tags mask     iscentered   isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,         0,            0,           1,           -1 },
 	{ "firefox",  NULL,       NULL,         1 << 1,       0,           0,            1 },
+	{ "Tor Browser", NULL,    NULL,         1 << 1,       1,           1,            1 },
 	{ "qutebrowser", NULL,    NULL,         1 << 1,       0,           0,            1 },
 	{ "Pcmanfm",  NULL,       NULL,         1 << 2,       0,           0,           -1 },
 	{ "Thunar",   NULL,       NULL,         1 << 2,       0,           0,           -1 },
@@ -110,7 +111,7 @@ static const char *dmenucmd[] = { "dmenu_recency", "-m", dmenumon, "-fn", dmenuf
 static const char *termcmd[]  = { "st", NULL };
 static const char *mailcmd[]  = { TERMINAL, "-e", "neomutt", NULL };
 static const char *firefox[]  = { "firefox", NULL };
-static const char *firefoxpriv[] = { "firefox", "--private-window", NULL };
+static const char *firefoxpriv[] = { "tor-browser", NULL };
 static const char *qutebrowser[] = { "qutebrowser", NULL };
 static const char *wallchanger[] = { "sxiv", "/home/jasper/.local/share/wallpapers", "-t", "-r", NULL };
 static const char *rndbg[]    = { "setbg", "/usr/share/backgrounds/wallpapers/", NULL };
@@ -132,7 +133,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_F2,     spawn,          {.v = firefox } },
 	{ MODKEY|ShiftMask,             XK_F2,     spawn,          {.v = firefoxpriv } },
 	{ MODKEY,                       XK_F3,     spawn,          {.v = fileman }},
-	{ MODKEY|ShiftMask,             XK_F3,     spawn,          TERMCMD("lf")},
+	{ MODKEY|ShiftMask,             XK_F3,     spawn,          TERMCMD("samedir -vb")},
+	{ MODKEY,                       XK_F5,     spawn,          SHCMD("discord")},
 	{ MODKEY,                       XK_F8,     spawn,          SHCMD("xsetwacom set $(xsetwacom list devices | dmenu | sed 's/^.*id: //g' | awk '{print $1}') MapToOutput $(xrandr | grep mm | awk '{print $1}'| dmenu)")},
 
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
@@ -214,6 +216,7 @@ static Key keys[] = {
 	{0, XF86XK_AudioLowerVolume,               spawn,          SHCMD("lmc down && ( pkill -RTMIN+10 \"${STATUSBAR:-dwmblocks}\" >/dev/null 2>&1 ) 2>/dev/null") },
 	{0, XF86XK_AudioRaiseVolume,               spawn,          SHCMD("lmc up && ( pkill -RTMIN+10 \"${STATUSBAR:-dwmblocks}\" >/dev/null 2>&1 ) 2>/dev/null") },
 	{0, XF86XK_AudioMicMute,                   spawn,          SHCMD("lmc mictoggle && ( pkill -RTMIN+10 \"${STATUSBAR:-dwmblocks}\" >/dev/null 2>&1 ) 2>/dev/null") },
+	{0, XF86XK_AudioStop,                      spawn,          SHCMD("dmenu-mpd.sh") },
 };
 
 /* button definitions */
