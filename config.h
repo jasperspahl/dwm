@@ -3,7 +3,8 @@
 #define TERMINAL "st"
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int gappx     = 2;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -19,13 +20,13 @@ static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
 	/*                  fg         bg         border   */
-	[SchemeNorm]    = { col_gray3, col_gray1, "#000000" },
+	[SchemeNorm]    = { col_gray3, col_gray1, col_gray1 },
 	[SchemeSel]     = { col_gray4, col_cyan,  col_cyan  },
 	[SchemeStatus]  = { col_gray4, col_gray1,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
 };
 static const unsigned int alphas[][3]      = {
 	/*                  fg      bg        border     */
-	[SchemeNorm]    = { OPAQUE, baralpha, borderalpha },
+	[SchemeNorm]    = { OPAQUE, baralpha, baralpha },
 	[SchemeSel]     = { OPAQUE, baralpha, borderalpha },
 	[SchemeStatus]  = { OPAQUE, baralpha, borderalpha },
 };
